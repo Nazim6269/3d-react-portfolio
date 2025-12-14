@@ -16,32 +16,48 @@ const Projects = () => {
           {projects.map((project, index) => (
             <GlowCard card={project} key={project.id} index={index}>
               {/* Project Image */}
-
-              <img
-                src={project.img}
+              {/* <img
+                src={project.screenshots?.[0]}
                 alt={project.title}
                 className="w-full rounded-lg mb-4"
-              />
+              /> */}
 
               {/* Project Info */}
               <h3 className="font-bold text-lg">{project.title}</h3>
               <p className="text-white-50 text-sm mt-2">{project.des}</p>
 
-              {/* Tech Icons */}
-              <div className="flex gap-2 mt-4">
-                {project.iconLists.map((icon, i) => (
-                  <img key={i} src={icon} alt="tech" className="w-6 h-6" />
+              {/* Technologies */}
+              <div className="flex flex-wrap gap-2 mt-4">
+                {project?.technologies?.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 text-xs rounded-full bg-purple-500/20 text-purple-300"
+                  >
+                    {tech}
+                  </span>
                 ))}
               </div>
 
-              {/* Project Link */}
-              <Link
-                to={project.link}
-                onClick={(e) => e.stopPropagation()}
-                className="inline-block mt-4 text-purple-400 hover:text-purple-300 font-medium"
-              >
-                View Project →
-              </Link>
+              {/* Project Links */}
+              <div className="flex gap-4 mt-4">
+                <Link
+                  to={project.demoLink}
+                  target="_blank"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-purple-400 hover:text-purple-300 font-medium"
+                >
+                  Live Demo →
+                </Link>
+
+                <Link
+                  to={project.githubLink}
+                  target="_blank"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-gray-400 hover:text-gray-300 font-medium"
+                >
+                  GitHub →
+                </Link>
+              </div>
             </GlowCard>
           ))}
         </div>
